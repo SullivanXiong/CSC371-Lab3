@@ -69,9 +69,15 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.collider.tag == "Ground")
         {
             grounded = true;
+        }
+        else if (collision.collider.tag == "Monster")
+        {
+            GameObject health = GameObject.Find("Player Health");
+            HealthManager healthManager = health.GetComponent<HealthManager>();
+            healthManager.health -= 1;
         }
     }
 
